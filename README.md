@@ -1,0 +1,2 @@
+# -SISTEMA-INTEGRAL-DE-GESTI-N-VETERINARIA-Nombre-Provisional-
+El proyecto consiste en un Sistema de Gestión Veterinaria diseñado para automatizar el control de pacientes y servicios. La solución permite registrar mascotas, gestionar historiales clínicos y coordinar citas médicas. Además, integra el control de inventarios de fármacos y facturación, optimizando la atención y la toma de decisiones clínicas.
