@@ -1,0 +1,17 @@
+{
+    "name": "cobain/veterinariamilanoreal",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Cobain\\Veterinariamilanoreal\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "T1Cobain",
+            "email": "leyxcer13@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
