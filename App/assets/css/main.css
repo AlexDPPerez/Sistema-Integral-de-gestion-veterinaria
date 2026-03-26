@@ -1,0 +1,43 @@
+:root {
+    --primary-dark: #16213e;
+    --accent-vibrant: #6acdcc;
+    --accent-soft: #fec899;
+    --primary-teal: #0c849c;
+    --white-bg: #ffffff;
+    --text-main: #16213e;
+}
+
+.bg-vt-primary {
+    background-color: var(--primary-dark);
+}
+.bg-secondary {
+    background-color: var(--accent-soft);
+}
+.bg-tertiary {
+    background-color: var(--accent-vibrant);
+}
+.bg-teal {
+    background-color: var(--primary-teal);
+}
+.bg-white {
+    background-color: var(--white-bg);
+}
+
+.text-main {
+    color: var(--text-main);
+}
+.text-primary {
+    color: var(--primary-dark);
+}
+.text-secondary {
+    color: var(--accent-soft);
+}
+.text-tertiary {
+    color: var(--accent-vibrant);
+}
+.text-teal {
+    color: var(--primary-teal);
+}
+.text-white {
+    color: var(--white-bg);
+}
