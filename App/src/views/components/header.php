@@ -1,13 +1,13 @@
 <!-- Header Superior -->
 <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 sticky top-0 z-40 shadow-sm">
     <div class="flex items-center gap-4">
-        <h2 class="text-lg font-semibold text-slate-800"><?= $pageTitle ?? 'Panel de Control' ?></h2>
+        <h2 class="text-lg font-bold text-primary uppercase tracking-wider"><?= $pageTitle ?? 'Panel de Control' ?></h2>
     </div>
     
     <div class="flex items-center gap-5">
         <!-- Buscador rápido opcional -->
         <div class="hidden md:block">
-            <input type="text" placeholder="Buscar..." class="bg-slate-100 border-none rounded-lg px-4 py-1.5 text-sm focus:ring-2 focus:ring-indigo-500 w-64">
+            <input type="text" placeholder="Buscar..." class="bg-slate-100 border-none rounded-lg px-4 py-1.5 text-sm focus:ring-2 focus:ring-tertiary w-64 outline-none transition-all">
         </div>
         
         <!-- Notificaciones / Acción -->

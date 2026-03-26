@@ -8,18 +8,21 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- FontAwesome para iconos si decides usarlos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
-<body class="bg-slate-50 text-slate-900">
-    <!-- Componente Fijo: Menú Lateral -->
-    <?php include_once("src/views/components/menu_lateral.php") ?>
+<?php $logeado = isset($_SESSION['logeado']) && $_SESSION['logeado'] == 1; ?>
+<body class="<?= $logeado ? 'bg-slate-50' : 'bg-vt-primary' ?> text-slate-900">
 
-    <!-- Contenedor de contenido (ml-64 para respetar el ancho del sidebar) -->
-    <div class="ml-64 flex flex-col min-h-screen">
+    <!-- Componente Fijo: Menú Lateral -->
+    <?php if($logeado) { include_once("src/views/components/menu_lateral.php"); } ?>
+
+    <!-- Contenedor de contenido: ml-64 solo si hay sidebar, min-h-screen para ocupar todo el alto -->
+    <div class="<?= $logeado ? 'ml-64' : '' ?> flex flex-col min-h-screen">
         <!-- Componente Fijo: Header -->
-        <?php include_once("src/views/components/header.php") ?>
+        <?php if($logeado) { include_once("src/views/components/header.php");} ?>
 
         <!-- Contenido Dinámico de cada módulo -->
-        <main class="p-8 flex-grow">
+        <main class="p-8 flex-grow <?= !$logeado ? 'flex items-center justify-center' : '' ?>">
             <?php include_once($contentView) ?>
         </main>
     </div>

@@ -1,0 +1,79 @@
+============================================================
+       GUÍA DE IDENTIDAD VISUAL Y DISEÑO DE INTERFAZ
+============================================================
+
+1. PALETA DE COLORES (BRAND COLORS)
+------------------------------------------------------------
+Estos colores definen la identidad visual del sistema. Se deben 
+respetar los códigos hexadecimales para mantener la consistencia.
+
+- AZUL PROFUNDO (#16213E):
+  Uso: Color base para fondos oscuros, barras de navegación 
+  superiores o laterales (Sidebar). Transmite seriedad y confianza.
+
+- CIAN VIBRANTE (#6ACDCC):
+  Uso: Color de acento primario. Ideal para botones de "Aceptar", 
+  "Nuevo Registro" o elementos activos. Transmite higiene y modernidad.
+
+- MELOCOTÓN SUAVE (#FEC899):
+  Uso: Color de soporte. Útil para alertas informativas, fondos de 
+  tarjetas secundarias o resaltado de estados pendientes.
+
+- CIAN PETRÓLEO (#0C849C):
+  Uso: Color de contraste. Perfecto para hover states (al pasar el 
+  mouse), iconos secundarios o enlaces dentro del texto.
+
+
+2. JERARQUÍA VISUAL Y TIPOGRAFÍA (RECOMENDACIONES)
+------------------------------------------------------------
+- Títulos Principales: Usar #16213E sobre fondo claro para máxima 
+  legibilidad.
+- Cuerpo de Texto: Gris oscuro (#333333) o el azul profundo 
+  para evitar la fatiga visual.
+- Estados de Error: Mantener un rojo estándar, pero usar el 
+  #FEC899 para avisos preventivos que no sean críticos.
+
+
+3. IMPLEMENTACIÓN TÉCNICA (VARIABLES CSS)
+------------------------------------------------------------
+Copia este bloque en tu archivo .css principal:
+
+:root {
+    --primary-dark: #16213e;
+    --accent-vibrant: #6acdcc;
+    --accent-soft: #fec899;
+    --primary-teal: #0c849c;
+    --white-bg: #ffffff;
+    --text-main: #16213e;
+}
+
+
+4. GUÍA DE COMPONENTES UI
+------------------------------------------------------------
+- BOTONES PRIMARIOS:
+  Background: --accent-vibrant | Text: --primary-dark (o blanco)
+  Border-radius: 8px (para un look moderno y amigable).
+
+- BARRAS DE NAVEGACIÓN:
+  Background: --primary-dark | Text/Icons: --accent-vibrant
+  
+- TARJETAS (CARDS) DE INFORMACIÓN:
+  Fondo blanco, borde de 1px con --accent-vibrant (opacidad 20%) 
+  o sombra sutil.
+
+- TABLAS DE DATOS / HISTORIALES:
+  Cabeceras: --primary-teal con texto blanco.
+  Filas: Alternar entre blanco y un gris muy tenue.
+
+
+5. NOTAS DE DISEÑO (UX)
+------------------------------------------------------------
+- Espaciado: Mantener márgenes amplios (padding: 16px o 24px) 
+  para que la interfaz respire, especialmente en módulos de 
+  inventario o historias clínicas.
+- Iconografía: Se recomienda el uso de trazos finos (tipo Lucide 
+  u Heroicons) en color --primary-teal.
+
+============================================================
+Fin del Documento
+============================================================

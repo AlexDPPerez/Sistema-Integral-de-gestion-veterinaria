@@ -44,17 +44,15 @@ if (strpos($url_actual, '/') === false) {
 }
 ?>
 
-<aside class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-100 transition-all duration-300 border-r border-slate-800">
+<aside class="fixed inset-y-0 left-0 z-50 w-64 bg-vt-primary text-slate-100 transition-all duration-300 border-r border-slate-800">
     <div class="flex flex-col h-full">
         <!-- Logo / Nombre del Sistema -->
         <div class="flex items-center justify-center h-20 border-b border-slate-800">
             <div class="flex items-center gap-2">
-                <div class="p-2 bg-indigo-600 rounded-lg">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                    </svg>
+                <div class="p-1 rounded-lg">
+                    <img src="assets/images/logo.png" alt="Logo" class="w-10 h-10 object-contain">
                 </div>
-                <h1 class="text-xl font-bold tracking-tight">Milano<span class="text-indigo-400"> Real C.A.</span></h1>
+                <h1 class="text-xl font-bold tracking-tight text-white">Milano<span class="text-tertiary"> Real C.A.</span></h1>
             </div>
         </div>
 
@@ -62,7 +60,7 @@ if (strpos($url_actual, '/') === false) {
         <nav class="flex-grow px-4 py-6 overflow-y-auto">
             <ul class="space-y-2">
                 <?php foreach ($paginas as $url => $info):
-                    $active = ($url_actual === $url) ? 'bg-slate-800 text-indigo-400' : 'text-slate-400 hover:bg-slate-800 hover:text-indigo-400';
+                    $active = ($url_actual === $url) ? 'bg-slate-900 text-tertiary' : 'text-slate-400 hover:bg-slate-800 hover:text-tertiary';
                 ?>
                     <li>
                         <a href="?url=<?= $url ?>" class="flex items-center px-4 py-3 rounded-xl transition-all group <?= $active ?>">
@@ -77,18 +75,23 @@ if (strpos($url_actual, '/') === false) {
         </nav>
 
         <!-- Perfil de Usuario / Footer del Menú -->
-        <div class="p-4 border-t border-slate-800 bg-slate-900/50">
+        <div class="p-4 border-t border-slate-800 bg-slate-900/50 space-y-4">
             <div class="flex items-center p-2 rounded-lg bg-slate-800/50 border border-slate-700">
                 <div class="flex-shrink-0">
-                    <div class="h-9 w-9 rounded-full bg-indigo-500 flex items-center justify-center text-xs font-bold text-white uppercase">
+                    <div class="h-9 w-9 rounded-full bg-tertiary flex items-center justify-center text-xs font-bold text-primary uppercase">
                         AD
                     </div>
                 </div>
-                <div class="ml-3 overflow-hidden">
+                <div class="ml-3 overflow-hidden flex-grow">
                     <p class="text-sm font-semibold text-white truncate">Admin</p>
                     <p class="text-xs text-slate-400 truncate">Veterinario</p>
                 </div>
             </div>
+            
+            <a href="?url=logout" class="flex items-center justify-center w-full px-4 py-2 text-xs font-bold text-red-400 uppercase tracking-widest border border-red-900/50 rounded-lg hover:bg-red-900/20 hover:text-red-300 transition-all gap-2">
+                <i class="fas fa-sign-out-alt"></i>
+                Cerrar Sesión
+            </a>
         </div>
     </div>
 </aside>
