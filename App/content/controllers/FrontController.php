@@ -2,11 +2,11 @@
 
 namespace App\content\controllers;
 
-$url = $_GET['url'] ?? 'home';
-$urlParts = explode('/', trim($url, '/'));
+$url = isset($_SESSION['logeado']) && $_SESSION['logeado'] == 1
+    ? ($_GET['url'] ?? 'home')
+    : 'login';
 
-$controllerName = ucfirst($urlParts[0]) . 'Controller';
-$method = $urlParts[1] ?? 'index';
+$controllerName = ucfirst($url) . 'Controller';
 
 $path = "content/controllers/{$controllerName}.php";
 
