@@ -8,7 +8,7 @@ $url = isset($_SESSION['logeado']) && $_SESSION['logeado'] == 1
 
 $controllerName = ucfirst($url) . 'Controller';
 
-$path = "content/controllers/{$controllerName}.php";
+$path = __DIR__ . "/{$controllerName}.php";
 
 if (file_exists($path)) {
     require_once($path);

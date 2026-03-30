@@ -1,13 +1,10 @@
 <?php
 
-// 1. Si ya está logeado, no debe ver el login, redirigir al home
-if (isset($_SESSION['logeado']) && $_SESSION['logeado'] == 1) {
-    header("Location: ?url=home");
-    exit();
-}
 
-// 2. Procesar el formulario POST
-if(isset($_POST['username']) && isset($_POST['password'])) {
+
+use App\content\models\UsuariosModel;
+
+/* if(isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -20,14 +17,38 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
     } else {
         $error = "Credenciales incorrectas. Inténtalo de nuevo.";
     }
+} */
+
+$isAjax = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) ) == 'xmlhttprequest';
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $usuariosModel = new UsuariosModel();
+    $usuario = $usuariosModel->validarUsuario($_POST['email'], $_POST['password']);
+
+    if ($usuario) {
+        $_SESSION['logeado'] = 1;
+        $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['nombre_usuario'] = $usuario['username'];
+
+        if ($isAjax) {
+            echo json_encode(["status" => "success", "data" => $usuario]);
+            exit();
+        }
+    } else {
+        if ($isAjax) {
+            http_response_code(401); 
+            echo json_encode(["error" => "Usuario o contraseña incorrectos"]);
+            exit();
+        }
+    }
 }
 
-// 3. Definir variables para la vista y cargar el layout al final
 $pageTitle = "Iniciar Sesión";
 $contentView = "src/views/login.php";
 
-if(file_exists("src/views/components/layout.php")){
+if ($_SERVER['REQUEST_METHOD'] != '' && file_exists("src/views/components/layout.php")) {
     require_once("src/views/components/layout.php");
-}else{
+} else {
     die("ERROR: No se pudo encontrar la vista principal");
 }

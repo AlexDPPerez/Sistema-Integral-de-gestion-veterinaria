@@ -19,33 +19,5 @@
     <tbody></tbody>
 </table>
 
-<script>
 
-data = [
-    {id: 1, nombre: 'Admin', rol: 'Administrador', email: 'aaaaaaaa'}
-];
-
-$(document).ready(function() {
-    $('#tablaUsuarios').DataTable({
-        data: data,
-        columns: [
-            { title: "ID", data: 'id' },
-            { title: "Nombre", data: 'nombre' },
-            { title: "Rol", data: 'rol' },
-            { title: "Email", data: 'email' },
-            {
-                title: "Acciones",
-                data: null,
-                render: function(data, type, row) {
-                    return `
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded-lg text-xs font-medium transition-colors">Editar</button>
-                        <button class="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded-lg text-xs font-medium transition-colors">Eliminar</button>
-                    `;
-                }
-            }
-        ]
-    });
-});
-    
-            
-</script>
+<script src="assets/js/usuarios.js"></script>
