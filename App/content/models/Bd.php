@@ -2,6 +2,7 @@
 
 namespace App\content\models;
 
+/* Clase base para la conexión a la base de datos */
 class Bd {
     protected $db;
     private $bdHost = "localhost";
