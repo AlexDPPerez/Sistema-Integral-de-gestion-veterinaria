@@ -1,4 +1,7 @@
 // Función para abrir el modal
+
+// Esta función muestra un modal de confirmación utilizando SweetAlert2 para preguntar al 
+// usuario si realmente desea cerrar sesión.
 function abrirModalCerrarSession() {
   Swal.fire({
     title: "¿Estás seguro de cerrar sesión?",

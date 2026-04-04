@@ -1,27 +1,15 @@
 <?php
 
-
-
 use App\content\models\UsuariosModel;
 
-/* if(isset($_POST['username']) && isset($_POST['password'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Aquí deberías validar las credenciales contra tu base de datos
-    // Por simplicidad, vamos a asumir que el usuario es "admin" y la contraseña es "1234"
-    if($username === 'admin' && $password === '1234') {
-        $_SESSION['logeado'] = 1; // Marcar como logeado
-        header("Location: ?url=home"); // Redirigir al home
-        exit();
-    } else {
-        $error = "Credenciales incorrectas. Inténtalo de nuevo.";
-    }
-} */
-
+// isAjax se utiliza para determinar si la petición es una solicitud AJAX (por ejemplo, desde JavaScript) o 
+// una solicitud normal (por ejemplo, al cargar la página). Esto permite que el controlador responda de manera 
+// diferente según el tipo de solicitud, devolviendo JSON para AJAX y cargando vistas para solicitudes normales.
 $isAjax = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) ) == 'xmlhttprequest';
 
-
+// Si la petición es POST, se asume que viene del formulario de inicio de sesión. 
+// Se extraen los datos, se llama al modelo para validar el usuario y se devuelve una respuesta JSON indicando éxito o error. 
+// Si la validación es exitosa, se establecen las variables de sesión correspondientes.
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuariosModel = new UsuariosModel();
     $usuario = $usuariosModel->validarUsuario($_POST['email'], $_POST['password']);
@@ -30,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['logeado'] = 1;
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['nombre_usuario'] = $usuario['username'];
+        $_SESSION['rol'] = $usuario['rol'];
 
         if ($isAjax) {
             echo json_encode(["status" => "success", "data" => $usuario]);
@@ -44,6 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+
+// Si la petición no es AJAX, se carga la vista de inicio de sesión. Se establece el título de la página.
+// y la vista que se va a cargar dentro del layout principal.
 $pageTitle = "Iniciar Sesión";
 $contentView = "src/views/login.php";
 

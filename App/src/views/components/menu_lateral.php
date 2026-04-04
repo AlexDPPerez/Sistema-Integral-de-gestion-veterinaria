@@ -88,7 +88,7 @@ if (strpos($url_actual, '/') === false) {
                 </div>
                 <div class="ml-3 overflow-hidden flex-grow">
                     <p class="text-sm font-semibold text-white truncate"><?= $_SESSION['nombre_usuario'] ?></p>
-                    <p class="text-xs text-slate-400 truncate">Veterinario</p>
+                    <p class="text-xs text-slate-400 truncate"><?= $_SESSION['rol'] ?></p>
                 </div>
             </div>
             
