@@ -1,0 +1,15 @@
+/* Quitar el color de fondo de las filas impares (odd) y pares (even) */
+table.dataTable tbody tr {
+    background-color: #ffffff !important;
+}
+
+/* Opcional: Si quieres que al pasar el mouse se resalte (hover) */
+table.dataTable tbody tr:hover {
+    background-color: #f8fafc !important; /* Un gris muy ligero (slate-50) */
+}
+
+/* Quitar el sombreado azul que DataTables aplica a veces al ordenar columnas */
+table.dataTable.display tbody tr.odd > .sorting_1, 
+table.dataTable.display tbody tr.even > .sorting_1 {
+    background-color: transparent !important;
+}

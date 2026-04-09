@@ -15,18 +15,28 @@ use App\content\models\UsuariosModel;
 // isAjax se utiliza para determinar si la petición es una solicitud AJAX (por ejemplo, desde JavaScript) o 
 // una solicitud normal (por ejemplo, al cargar la página). Esto permite que el controlador responda de manera 
 // diferente según el tipo de solicitud, devolviendo JSON para AJAX y cargando vistas para solicitudes normales.
-$isAjax = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) ) == 'xmlhttprequest';
+$isAjax = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH'])) == 'xmlhttprequest';
 
 
-// Si la petición es GET, se asume que es para obtener el listado de usuarios. Se llama al modelo para 
-// obtener los usuarios y se devuelve la lista en formato JSON. Esto es utilizado por la tabla de usuarios en
-// la vista para cargar los datos dinámicamente.
+/**
+ * Manejo de la solicitud GET para obtener la lista de usuarios o un usuario específico.
+ * Si se proporciona un ID en la consulta, se obtiene ese usuario específico; de lo contrario
+ * se obtiene la lista completa de usuarios. Si la solicitud es AJAX, se devuelve la respuesta en formato JSON.
+ */
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $usuariosModel = new UsuariosModel();
-    $usuarios = $usuariosModel->obtenerUsuarios();
+    $data = null; // Usamos una variable genérica para la respuesta
 
-    if($isAjax){    
-        echo json_encode($usuarios);
+    if (isset($_GET['id'])) {
+        $data = $usuariosModel->obtenerUsuarioPorId($_GET['id']);
+    } else {
+        $data = $usuariosModel->obtenerUsuarios();
+    }
+
+    if ($isAjax) {
+        // Asegúrate de que $isAjax esté definido previamente
+        header('Content-Type: application/json'); // Buena práctica para AJAX
+        echo json_encode($data);
         exit();
     }
 }
@@ -38,14 +48,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $rol = $_POST['rol'];
+    $is_active = $_POST['is_active'];
 
     $usuariosModel = new UsuariosModel();
-    $resultado = $usuariosModel->insertarUsuario($username, $email, $password, $rol);
-    if($isAjax){
+    $resultado = $usuariosModel->insertarUsuario($username, $email, $password, $rol, $is_active);
+    if ($isAjax) {
         if ($resultado) {
             echo json_encode(["success" => "Usuario creado exitosamente"]);
         } else {
             echo json_encode(["error" => "Error al crear el usuario"]);
+        }
+        exit();
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+    parse_str(file_get_contents("php://input"), $_PUT);
+    $id = $_PUT['id'] ?? null;
+    $username = $_PUT['username'] ?? null;
+    $email = $_PUT['email'] ?? null;
+    $password = $_PUT['password'] ?? null;
+    $rol = $_PUT['rol'] ?? null;
+    $is_active = $_PUT['is_active'] ?? null;
+
+     $usuariosModel = new UsuariosModel();
+    $resultado = $usuariosModel->actualizarUsuario($id, $username, $email, $password, $rol, $is_active);
+    if ($isAjax) {
+        if ($resultado) {
+            echo json_encode(["success" => "Usuario editado exitosamente"]);
+        } else {
+            echo json_encode(["error" => "Error al editar el usuario"]);
+        }
+        exit();
+    }
+}
+
+
+/* Esta parte del código está manejando el método de solicitud DELETE. 
+Verifica si el método de solicitud es DELETE, de ser el caso, toma la id del usuario a eliminar
+y ejecuta la eliminación */
+if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+    parse_str(file_get_contents("php://input"), $_DELETE);
+    $id = $_DELETE['id'] ?? null;
+
+    $usuariosModel = new UsuariosModel();
+    $resultado = $usuariosModel->eliminarUsuario($id);
+    if ($isAjax) {
+        if ($resultado) {
+            echo json_encode(["success" => "Usuario eliminado exitosamente"]);
+        } else {
+            echo json_encode(["error" => "Error al eliminar el usuario"]);
         }
         exit();
     }

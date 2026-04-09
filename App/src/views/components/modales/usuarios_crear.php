@@ -1,5 +1,6 @@
 <!-- Formulario para crear usuario (Contenido del Modal) -->
 <form id="formCrearUsuario" class="space-y-5">
+    <input type="hidden" name="id" id="usuario_id">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <!-- Nombre de Usuario -->
         <div class="space-y-2">
@@ -8,7 +9,7 @@
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <i class="fas fa-user text-slate-400 text-xs"></i>
                 </div>
-                <input type="text" name="username" id="nombre_usuario" placeholder="ej. jperez" 
+                <input type="text" name="username" id="nombre_usuario" placeholder="ej. jperez"
                     class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tertiary focus:border-tertiary outline-none transition-all text-sm text-slate-700" required>
             </div>
         </div>
@@ -20,7 +21,7 @@
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <i class="fas fa-envelope text-slate-400 text-xs"></i>
                 </div>
-                <input type="email" name="email" id="correo" placeholder="usuario@correo.com" 
+                <input type="email" name="email" id="correo" placeholder="usuario@correo.com"
                     class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tertiary focus:border-tertiary outline-none transition-all text-sm text-slate-700" required>
             </div>
         </div>
@@ -28,8 +29,8 @@
         <!-- Contraseña -->
         <div class="space-y-2">
             <label for="contrasena" class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Contraseña</label>
-            <input type="password" name="password" id="contrasena" placeholder="••••••••" 
-                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tertiary focus:border-tertiary outline-none transition-all text-sm text-slate-700" required>
+            <input type="password" name="password" id="contrasena" placeholder="••••••••"
+                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tertiary focus:border-tertiary outline-none transition-all text-sm text-slate-700" required >
         </div>
 
         <!-- Rol -->
@@ -39,6 +40,15 @@
                 <option value="veterinario">Veterinario</option>
                 <option value="admin">Administrador</option>
                 <option value="asistente">Asistente</option>
+            </select>
+        </div>
+
+        <!-- Estado (Activo/Inactivo) -->
+        <div class="space-y-2">
+            <label for="estado" class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Estado</label>
+            <select name="is_active" id="estado" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tertiary focus:border-tertiary outline-none transition-all text-sm text-slate-700 cursor-pointer appearance-none">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
             </select>
         </div>
     </div>

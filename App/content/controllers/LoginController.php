@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Si ya hay un loggin activo, se detiene la ejecución del script para evitar que un usuario logeado vuelva a acceder al formulario de login.
+ * Esto es una medida de seguridad para evitar que un usuario logeado pueda acceder a la página de inicio de sesión, lo que podría causar confusión o problemas de seguridad.
+ */
+
+if (isset($_SESSION['logeado']) && $_SESSION['logeado'] == 1) {
+    // Si ya está logueado, lo mandamos al home
+    header("Location: index.php?url=home");
+    exit();
+}
+
+
 use App\content\models\UsuariosModel;
 
 // isAjax se utiliza para determinar si la petición es una solicitud AJAX (por ejemplo, desde JavaScript) o 
